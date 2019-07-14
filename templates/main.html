@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    {% include 'head.html' %}
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div class="container" id="thiss">
+
+        <div class="mx-auto" style="width: 100%; text-align: center;">
+            <br><br>
+            <b>
+                <h1 id="title-text">유다에 오신것을 환영합니다!</h1>
+            </b><br>
+            <h5>추출을 원하는 동영상의 링크를 아래에 넣어주세요. <br> 비상업적 용도로만 이용하세요. 추출한 영상/음성을 사용하여 발생하는 문제는 '유다'의 책임이 없습니다.</h5><br>
+        </div>
+
+
+        <form action="/download_finish" method="post">
+            <div class="mx-auto" style="width:70%;">
+                <div class="input-group mb-3" style="width:100%;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fab fa-youtube img-fluid"></i></span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" style="width:50%;" name="link">　
+                        <label for="type"></label>
+                        <select class="form-control" id="type" name="type">
+                          <option name="video">영상 (mp4)</option>
+                          <option name="audio">음성 (mp3)</option>
+                        </select>
+                    　<button id ="this" type="submit" class="btn btn-dark"><i class="fas fa-cloud-download-alt"></i></button>
+
+                </div>
+            </div>
+        </form>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <span style="color:gray;">유다는 유튜브 다운로더의 줄임말입니다. </span><br>
+        <span style="color:gray;">Copyright 2019. khk4912 All rights reserved. </span><br>
+        <span style="color:gray;">khk49121@gmail.com, https://github.com/khk4912</span>
+        
+    </div>
+
+
+    <div class="container" style="margin-top: 20%; display:none;" id="dae">
+
+            <div class="row align-items-center">
+                <div class="col">
+                </div>
+                <div class="col" style="text-align: center;">
+                    <div class="spinner-border text-dark" role="status">
+                        <span class="sr-only">로딩 중...</span>
+                    </div><br>
+                다운로드 하고 있어요... <br>
+                mp3 파일은 서버 성능으로 변환이 느릴 수 있어요...
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+    
+    {% include 'js.html' %}
+</body>
+<script>
+    msg = ["유다에 오신것을 환영합니다!", "광고없는 다운로드", "빠른 mp4 다운로드", "한국어 지원"]
+    i = 0
+    function change_things() {
+        $("#title-text").fadeOut(function() {
+            $(this).text(msg[i]).fadeIn()
+        })
+        i++
+        if (i > 3) {
+            i = 0
+
+        }
+    }
+    setInterval(change_things, 4000)
+
+    $("#this").click(function () {
+        $("#thiss").fadeOut()
+        $("#dae").fadeIn()
+    })
+</script>
+
+</html>
